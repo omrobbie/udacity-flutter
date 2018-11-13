@@ -23,7 +23,7 @@ class Category extends StatelessWidget {
         assert(units != null),
         super(key: key);
 
-  void _navigationToConverter(BuildContext context) {
+  void _navigateToConverter(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute<Null>(
       builder: (BuildContext context) {
         return Scaffold(
