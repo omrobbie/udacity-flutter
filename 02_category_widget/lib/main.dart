@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'category.dart';
+
+const _categoryName = 'Cake';
+const _categoryIcon = Icons.cake;
+const _categoryColor = Colors.green;
 
 void main() {
   runApp(UnitConverterApp());
@@ -13,7 +18,11 @@ class UnitConverterApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.green[100],
         body: Center(
-          child: Text('Category Widget'),
+          child: Category(
+            name: _categoryName,
+            icon: _categoryIcon,
+            color: _categoryColor,
+          ),
         ),
       ),
     );
