@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'unit.dart';
 
 class ConverterRoute extends StatelessWidget {
+  final String name;
+  final Color color;
   final List<Unit> units;
 
   const ConverterRoute({
+    @required this.name,
+    @required this.color,
     @required this.units,
-  }) : assert(units != null);
+  })  : assert(name != null),
+        assert(color != null),
+        assert(units != null);
 
   @override
   Widget build(BuildContext context) {
