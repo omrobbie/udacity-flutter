@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'category.dart';
-import 'unit_converter.dart';
 
 const _rowHeight = 100.0;
 final _borderRadius = BorderRadius.circular(_rowHeight / 2);
@@ -17,25 +16,6 @@ class CategoryTile extends StatelessWidget {
         assert(onTap != null),
         super(key: key);
 
-  void _navigateToConverter(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          elevation: 1.0,
-          title: Text(
-            category.name,
-            style: Theme.of(context).textTheme.display1,
-          ),
-          centerTitle: true,
-          backgroundColor: category.color,
-        ),
-        body: UnitConverter(category: category),
-        resizeToAvoidBottomPadding: false,
-      );
-    }));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -46,7 +26,7 @@ class CategoryTile extends StatelessWidget {
           borderRadius: _borderRadius,
           highlightColor: category.color['hightlight'],
           splashColor: category.color['splash'],
-          onTap: () => _navigateToConverter(context),
+          onTap: () => onTap(category),
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Row(
