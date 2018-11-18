@@ -31,6 +31,16 @@ class _UnitConverterState extends State<UnitConverter> {
     _setDefaults();
   }
 
+  @override
+  void didUpdateWidget(UnitConverter old) {
+    super.didUpdateWidget(old);
+
+    if (old.category != widget.category) {
+      _createDropdownMenuItems();
+      _setDefaults();
+    }
+  }
+
   void _createDropdownMenuItems() {
     var newItems = <DropdownMenuItem>[];
 
