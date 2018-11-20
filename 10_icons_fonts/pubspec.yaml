@@ -42,6 +42,14 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
     - assets/data/regular_units.json
+    - assets/icons/area.png
+    - assets/icons/currency.png
+    - assets/icons/digital_storage.png
+    - assets/icons/length.png
+    - assets/icons/mass.png
+    - assets/icons/power.png
+    - assets/icons/time.png
+    - assets/icons/volume.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
