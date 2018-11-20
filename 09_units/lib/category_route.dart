@@ -21,17 +21,6 @@ class _CategoryRouteState extends State<CategoryRoute> {
 
   final _categories = <Category>[];
 
-  static const _categoryNames = <String>[
-    'Length',
-    'Area',
-    'Volume',
-    'Mass',
-    'Time',
-    'Digital Storage',
-    'Energy',
-    'Currency',
-  ];
-
   static const _baseColors = <ColorSwatch>[
     ColorSwatch(0xFF6AB7A8, {
       'highlight': Color(0xFF6AB7A8),
@@ -69,21 +58,11 @@ class _CategoryRouteState extends State<CategoryRoute> {
   ];
 
   @override
-  void initState() {
-    super.initState();
+  Future<void> didChangeDependencies() async {
+    super.didChangeDependencies();
 
-    for (var i = 0; i < _categoryNames.length; i++) {
-      var category = Category(
-        name: _categoryNames[i],
-        color: _baseColors[i],
-        iconLocation: Icons.cake,
-        units: _retrieveUnitList(_categoryNames[i]),
-      );
-
-      if (i == 0) {
-        _defaultCategory = category;
-      }
-      _categories.add(category);
+    if (_categories.isEmpty) {
+      await _retrieveLocalCategories();
     }
   }
 
@@ -96,6 +75,28 @@ class _CategoryRouteState extends State<CategoryRoute> {
     if (data is! Map) {
       throw ('Data retrieved from API is not a Map');
     }
+
+    var categoryIndex = 0;
+
+    data.keys.forEach((key) {
+      final List<Unit> units =
+          data[key].map<Unit>((dynamic data) => Unit.fromJson(data)).toList();
+
+      var category = Category(
+        name: key,
+        units: units,
+        color: _baseColors[categoryIndex],
+        iconLocation: Icons.cake,
+      );
+
+      setState(() {
+        if (categoryIndex == 0) {
+          _defaultCategory = category;
+        }
+        _categories.add(category);
+      });
+      categoryIndex += 1;
+    });
   }
 
   void _onCategoryTap(Category category) {
@@ -127,16 +128,6 @@ class _CategoryRouteState extends State<CategoryRoute> {
         }).toList(),
       );
     }
-  }
-
-  List<Unit> _retrieveUnitList(String categoryName) {
-    return List.generate(10, (int i) {
-      i += 1;
-      return Unit(
-        name: '$categoryName Unit $i',
-        conversion: i.toDouble(),
-      );
-    });
   }
 
   @override
