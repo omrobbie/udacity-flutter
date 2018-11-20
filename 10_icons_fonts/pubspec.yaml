@@ -74,5 +74,10 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
+  fonts:
+   - family: Raleway
+     fonts:
+      - asset: assets/fonts/Raleway-Regular.ttf
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
